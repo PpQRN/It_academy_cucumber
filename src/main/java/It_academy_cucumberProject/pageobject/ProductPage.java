@@ -8,18 +8,18 @@ import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class ProductPage extends BasePage {
-    private static final ElementsCollection productName = $$x("//a[contains(@class, 'js-product-title-link')]");
-    private static final ElementsCollection productDescription = $$x("//span[contains(@data-bind, 'product.description')]");
-    private static final ElementsCollection productRating = $$x("//div[contains(@class, 'part_4')]//div[contains(@class, 'rating-group')]//a[contains(@class, 'schema-product')]");
-    private static final ElementsCollection productPrice = $$x("//div[contains(@class, 'product__price')]/a[contains(@class, 'js-product-price-link') and contains(@href, 'prices')]");
-    private static final ElementsCollection productImage = $$x("//a[contains(@class, 'image-link')]");
-    private static final ElementsCollection productCheckBox = $$x("//span[contains(@class, 'i-checkbox i-checkbox_yellow')]");
-    private static final ElementsCollection productsAll = $$x("//div[@class = 'schema-product__group']");
-    private static final SelenideElement productTitle = $x("//h1[@class = 'catalog-masthead__title js-nav-header']");
-    private static final SelenideElement goToCart = $x("//a[contains(text(), 'Перейти в корзину')]");
+    private final ElementsCollection productName = $$x("//a[contains(@class, 'js-product-title-link')]");
+    private final ElementsCollection productDescription = $$x("//span[contains(@data-bind, 'product.description')]");
+    private final ElementsCollection productRating = $$x("//div[contains(@class, 'part_4')]//div[contains(@class, 'rating-group')]//a[contains(@class, 'schema-product')]");
+    private final ElementsCollection productPrice = $$x("//div[contains(@class, 'product__price')]/a[contains(@class, 'js-product-price-link') and contains(@href, 'prices')]");
+    private final ElementsCollection productImage = $$x("//a[contains(@class, 'image-link')]");
+    private final ElementsCollection productCheckBox = $$x("//span[contains(@class, 'i-checkbox i-checkbox_yellow')]");
+    private final ElementsCollection productsAll = $$x("//div[@class = 'schema-product__group']");
+    private final SelenideElement productTitle = $x("//h1[@class = 'catalog-masthead__title js-nav-header']");
+    private final SelenideElement goToCart = $x("//a[contains(text(), 'Перейти в корзину')]");
     private final SelenideElement removeIcon = $x("//a[contains(@class, 'remove')]");
-    private static final SelenideElement cartIcon = $x("//a[contains(@href, 'cart') and contains(@title, 'Корзина') ]");
-    private static final SelenideElement continueShopping = $x("//a[contains(@class, 'button') and contains(text(), 'Продолжить')]");
+    private final SelenideElement cartIcon = $x("//a[contains(@href, 'cart') and contains(@title, 'Корзина') ]");
+    private final SelenideElement continueShopping = $x("//a[contains(@class, 'button') and contains(text(), 'Продолжить')]");
     private final SelenideElement productTitleInCart = $x("//a[contains(@href, 'catalog') and contains(@class, 'cart-form__link cart-form__link_primary cart-form__link_base-alter' )]");
 
     private static final ElementsCollection addToCartButtons = $$x("//a[@class = " +
@@ -29,34 +29,38 @@ public class ProductPage extends BasePage {
     public ElementsCollection getProductNameList() {
         return productName;
     }
-    public void clickOnRemoveIcon(){
+
+    public void clickOnRemoveIcon() {
         productTitleInCart.shouldBe(Condition.visible).hover();
         removeIcon.shouldBe(Condition.visible).click();
     }
 
-    public SelenideElement getProductTitle(){
+    public SelenideElement getProductTitle() {
         return productTitle;
     }
 
-    public void clickOnCartIcon(){
+    public void clickOnCartIcon() {
         cartIcon.shouldBe(Condition.visible).click();
     }
-    public SelenideElement getProductTitleInCart(){
+
+    public SelenideElement getProductTitleInCart() {
         return productTitleInCart;
     }
 
-    public void clickOnGoToCartButton(){
+    public void clickOnGoToCartButton() {
         goToCart.shouldBe(Condition.visible).click();
     }
 
-    public void clickOnContinueShopping(){ continueShopping.shouldBe(Condition.visible).click();}
+    public void clickOnContinueShopping() {
+        continueShopping.shouldBe(Condition.visible).click();
+    }
 
-    public ProductPage clickOnAddToCartButton(){
+    public ProductPage clickOnAddToCartButton() {
         addToCartButtons.first().shouldBe(Condition.visible).click();
         return this;
     }
 
-    public ProductPage clickOnProductTitle(){
+    public ProductPage clickOnProductTitle() {
         productName.first().shouldBe(Condition.visible).click();
         return this;
     }
@@ -106,7 +110,7 @@ public class ProductPage extends BasePage {
 //        return isElementDisplayed(productCheckBox);
 //    }
 
-//    public int countProducts() {
+    //    public int countProducts() {
 //        return selectElements(productsAll).size();
 //    }
     public ElementsCollection getAllProducts() {
