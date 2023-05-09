@@ -17,6 +17,9 @@ public class ProductPage extends BasePage {
     private static final ElementsCollection productsAll = $$x("//div[@class = 'schema-product__group']");
     private static final SelenideElement productTitle = $x("//h1[@class = 'catalog-masthead__title js-nav-header']");
     private static final SelenideElement goToCart = $x("//a[contains(text(), 'Перейти в корзину')]");
+    private final SelenideElement removeIcon = $x("//a[contains(@class, 'remove')]");
+    private static final SelenideElement cartIcon = $x("//a[contains(@href, 'cart') and contains(@title, 'Корзина') ]");
+    private static final SelenideElement continueShopping = $x("//a[contains(@class, 'button') and contains(text(), 'Продолжить')]");
     private final SelenideElement productTitleInCart = $x("//a[contains(@href, 'catalog') and contains(@class, 'cart-form__link cart-form__link_primary cart-form__link_base-alter' )]");
 
     private static final ElementsCollection addToCartButtons = $$x("//a[@class = " +
@@ -26,11 +29,18 @@ public class ProductPage extends BasePage {
     public ElementsCollection getProductNameList() {
         return productName;
     }
+    public void clickOnRemoveIcon(){
+        productTitleInCart.shouldBe(Condition.visible).hover();
+        removeIcon.shouldBe(Condition.visible).click();
+    }
 
     public SelenideElement getProductTitle(){
         return productTitle;
     }
 
+    public void clickOnCartIcon(){
+        cartIcon.shouldBe(Condition.visible).click();
+    }
     public SelenideElement getProductTitleInCart(){
         return productTitleInCart;
     }
@@ -38,6 +48,8 @@ public class ProductPage extends BasePage {
     public void clickOnGoToCartButton(){
         goToCart.shouldBe(Condition.visible).click();
     }
+
+    public void clickOnContinueShopping(){ continueShopping.shouldBe(Condition.visible).click();}
 
     public ProductPage clickOnAddToCartButton(){
         addToCartButtons.first().shouldBe(Condition.visible).click();

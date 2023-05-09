@@ -8,6 +8,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.After;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -49,12 +50,12 @@ public class CartSteps {
     @And("the user clicks on В корзину")
     public void userClicksOnAddToCart() {
         productTitleOnProductPage = productPage.getProductTitle().text();
-        new ProductPage().clickOnAddToCartButton();
+        productPage.clickOnAddToCartButton();
     }
 
     @And("the user clicks on Перейти в корзину")
     public void userClicksOnGoToCart() {
-        new ProductPage().clickOnGoToCartButton();
+        productPage.clickOnGoToCartButton();
     }
 
     @Then("page with chosen product in cart is opened")
@@ -66,5 +67,15 @@ public class CartSteps {
     @And("produt name is the same as at product page")
     public void productNameIsTheSameAsAtProductPage() {
         assertThat(productPage.getProductTitleInCart().text()).isEqualTo(productTitleOnProductPage);
+    }
+
+    @And("the user clicks on Продолжить покупки")
+    public void theUserClicksOnПродолжитьПокупки() {
+        productPage.clickOnContinueShopping();
+    }
+
+    @And("the user clicks on cart icon")
+    public void theUserClicksOnCartIcon() {
+        productPage.clickOnCartIcon();
     }
 }
